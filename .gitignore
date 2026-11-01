@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Production output
+dist/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Test screenshots & dumps in root/shots
+shots/
+shot-*.png
+cdp-*.png
+0[0-9]-*.png
+1[0-9]-*.png
+test-*.png
+*.tmp
+
+# Vercel
+.vercel/

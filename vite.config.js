@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  base: './',
+  base: '/',
   plugins: [{
     name: 'site-url',
     transformIndexHtml: (html) => html.replaceAll('%SITE_URL%', (process.env.SITE_URL || 'https://YOUR-DOMAIN.vercel.app').replace(/\/$/, '')),
