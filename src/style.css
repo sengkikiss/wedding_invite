@@ -49,7 +49,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .env-flap{left:0;top:0;width:100%;height:calc(var(--eh)*.6);z-index:4;transform-style:preserve-3d;transform-origin:50% 0}
 .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .face.front{background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(0,0,0,.12)),url(/textures/paper-env.webp);background-size:auto,300px}
-.face.back{transform:rotateX(180deg);background:url(/textures/paper-lining.webp);background-size:300px}
+.face.back{transform:rotateY(180deg);background:url(/textures/paper-lining.webp);background-size:300px}
 .face.back::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,40,10,.28),rgba(0,0,0,0) 55%)}
 .face svg.scl{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .face .flap-logo{position:absolute;left:50%;top:5%;width:38%;transform:translateX(-50%)}

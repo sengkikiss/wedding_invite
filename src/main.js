@@ -387,7 +387,7 @@ function openEnvelope() {
   removeEventListener('deviceorientation', onTilt);
   idle.kill();
   gsap.to([tilt, floatEl], { rotationX: 0, rotationY: 0, y: 0, duration: 0.5, ease: 'power2.out' });
-  gsap.to(el('tap'), { autoAlpha: 0, duration: 0.4 });
+  gsap.to(['.env-title', el('tap')], { autoAlpha: 0, y: -14, duration: 0.45, ease: 'power2.out' });
 
   const seal = el('seal'), flap = el('flap'), card = el('card'), shadow = el('flapShadow');
   const env = el('env'), eh = env.offsetHeight;
