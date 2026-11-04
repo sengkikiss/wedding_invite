@@ -10,7 +10,7 @@ const photoUrl = (id) => {
   return `${B}img/${id}-${Math.max(...g.sizes)}.webp`;
 };
 
-// Photo Spreads configuration
+// Photo Spreads configuration (10 photos total across 5 spreads)
 const SPREADS = [
   // Spread 0: Front Cover
   null,
@@ -29,7 +29,17 @@ const SPREADS = [
     left: { id: '05-corridor', num: 5, captionKm: 'ក្តីស្រលាញ់', captionEn: 'Eternal Love' },
     right: { id: '06-walk-wide', num: 6, captionKm: 'សុភមង្គល', captionEn: 'Golden Memories' },
   },
-  // Spread 4: Back Cover
+  // Spread 4: Photos 7 & 8
+  {
+    left: { id: '07-angkor-garland', num: 7, captionKm: 'កម្រងផ្កាសិរី', captionEn: 'Sacred Garland' },
+    right: { id: '08-road-gold', num: 8, captionKm: 'ដំណើរជីវិត', captionEn: 'Journey Together' },
+  },
+  // Spread 5: Photos 9 & 10
+  {
+    left: { id: '09-palms-standing', num: 9, captionKm: 'ម្លប់ស្នេហ៍', captionEn: 'Sweet Whispers' },
+    right: { id: '10-walk-smile', num: 10, captionKm: 'ស្នាមញញឹម', captionEn: 'Joyful Steps' },
+  },
+  // Spread 6: Back Cover
   null,
 ];
 
@@ -37,7 +47,7 @@ export function renderBookView(container, { lang }) {
   const t = () => dict[lang];
 
   let currentSpread = 0;
-  const maxSpreads = 4;
+  const maxSpreads = 6;
   let isAnimating = false;
 
   container.innerHTML = `
@@ -94,7 +104,7 @@ export function renderBookView(container, { lang }) {
             </div>
           </div>
 
-          <!-- 3D Turning Page Leaf (For page flips between Spreads 1, 2, 3) -->
+          <!-- 3D Turning Page Leaf (For flips between open spreads) -->
           <div class="album-leaf" id="albumLeaf" style="display:none">
             <div class="leaf-face leaf-front">
               <div class="page-matting">
@@ -125,7 +135,7 @@ export function renderBookView(container, { lang }) {
 
           <!-- 3D Front Hardcover (Swings open 0deg -> -180deg) -->
           <div class="album-cover-3d" id="albumCover3d">
-            <!-- Front of Cover (Leather & Gold Foil) -->
+            <!-- Outside of Cover (Leather & Gold Foil) -->
             <div class="cover-side cover-outside" id="coverOutside">
               <div class="cover-emboss-border"></div>
               <div class="cover-content">
@@ -145,14 +155,20 @@ export function renderBookView(container, { lang }) {
               <div class="cover-shade-overlay" id="coverShade"></div>
             </div>
 
-            <!-- Inside Lining of Cover -->
+            <!-- Inside of Cover (Integrated Page 1 in 3D) -->
             <div class="cover-side cover-inside" id="coverInside">
-              <div class="inside-border"></div>
-              <div class="inside-content">
-                <img class="inside-crest" src="${B}elements/crest.svg" alt="" />
-                <div class="inside-title foil">${t().album_cover_title}</div>
-                <div class="inside-names">${W.groom[lang].short} &amp; ${W.bride[lang].short}</div>
-                <p class="inside-date">១៦ ធ្នូ ២០២៦</p>
+              <div class="page-inner">
+                <div class="page-matting">
+                  <div class="photo-frame" id="coverFrameLeft" data-zoom="${photoUrl('01-angkor-blue')}">
+                    <img id="coverImgLeft" src="${photoUrl('01-angkor-blue')}" alt="Wedding Photo" loading="lazy" />
+                    <div class="zoom-pill">${t().zoom_label}</div>
+                  </div>
+                  <div class="page-meta">
+                    <span class="page-caption" id="coverCaptionLeft">ប្រាសាទអង្គរវត្ត</span>
+                    <span class="page-num" id="coverNumLeft">${num(1, lang)}</span>
+                  </div>
+                </div>
+                <div class="gutter-shadow left"></div>
               </div>
             </div>
           </div>
@@ -195,6 +211,7 @@ export function renderBookView(container, { lang }) {
 
   // Elements
   const stage = container.querySelector('#albumStage');
+  const albumSpread = container.querySelector('#albumSpread');
   const cover3d = container.querySelector('#albumCover3d');
   const coverShade = container.querySelector('#coverShade');
   const leaf = container.querySelector('#albumLeaf');
@@ -206,6 +223,11 @@ export function renderBookView(container, { lang }) {
   const captionLeft = container.querySelector('#captionLeft');
   const numLeft = container.querySelector('#numLeft');
   const frameLeft = container.querySelector('#frameLeft');
+
+  const coverImgLeft = container.querySelector('#coverImgLeft');
+  const coverCaptionLeft = container.querySelector('#coverCaptionLeft');
+  const coverNumLeft = container.querySelector('#coverNumLeft');
+  const coverFrameLeft = container.querySelector('#coverFrameLeft');
 
   const imgRight = container.querySelector('#imgRight');
   const captionRight = container.querySelector('#captionRight');
@@ -246,6 +268,14 @@ export function renderBookView(container, { lang }) {
     captionRight.textContent = getCaption(data.right);
     numRight.textContent = num(data.right.num, lang);
     frameRight.dataset.zoom = photoUrl(data.right.id);
+
+    // Also sync the coverInsidePage with Spread 1's left page
+    if (spreadIdx === 1) {
+      coverImgLeft.src = photoUrl(data.left.id);
+      coverCaptionLeft.textContent = getCaption(data.left);
+      coverNumLeft.textContent = num(data.left.num, lang);
+      coverFrameLeft.dataset.zoom = photoUrl(data.left.id);
+    }
   }
 
   function updateControls() {
@@ -257,6 +287,7 @@ export function renderBookView(container, { lang }) {
   // Initial setup: Closed Cover (Spread 0)
   setBaseSpread(1);
   updateControls();
+  gsap.set(stage, { x: '-25%' });
   gsap.set(cover3d, { rotationY: 0, transformPerspective: 2000 });
   gsap.set(leaf, { rotationY: 0, transformPerspective: 2000 });
 
@@ -269,11 +300,15 @@ export function renderBookView(container, { lang }) {
     // SCENARIO 1: Opening Front Cover (0 -> 1)
     if (currentSpread === 0 && target === 1) {
       setBaseSpread(1);
-      cover3d.style.zIndex = '10';
-      stage.classList.remove('closed-front');
+      cover3d.style.zIndex = '25';
+      cover3d.style.display = 'block';
+      albumSpread.style.display = 'flex';
+      albumSpread.style.clipPath = 'inset(0 0 0 50%)';
 
       const tl = gsap.timeline({
         onComplete: () => {
+          stage.classList.remove('closed-front');
+          albumSpread.style.clipPath = 'none';
           cover3d.style.zIndex = '1';
           currentSpread = 1;
           isAnimating = false;
@@ -281,42 +316,57 @@ export function renderBookView(container, { lang }) {
         },
       });
 
-      tl.to(cover3d, {
+      tl.to(stage, {
+        x: '0%',
+        duration: 1.15,
+        ease: 'power2.inOut',
+      }, 0)
+      .to(cover3d, {
         rotationY: -180,
         duration: 1.15,
         ease: 'power2.inOut',
       }, 0)
-      .fromTo(coverShade, { opacity: 0 }, { opacity: 0.6, duration: 0.55, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 0)
-      .fromTo('#albumSpread', { scale: 0.98 }, { scale: 1, duration: 0.8, ease: 'power2.out' }, 0.4);
+      .fromTo(coverShade, { opacity: 0 }, { opacity: 0.55, duration: 0.55, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 0);
 
       return;
     }
 
     // SCENARIO 2: Closing Front Cover (1 -> 0)
     if (currentSpread === 1 && target === 0) {
-      cover3d.style.zIndex = '10';
+      cover3d.style.zIndex = '25';
+      cover3d.style.display = 'block';
       stage.classList.add('closed-front');
+      albumSpread.style.display = 'flex';
+      albumSpread.style.clipPath = 'inset(0 0 0 50%)';
 
       const tl = gsap.timeline({
         onComplete: () => {
+          cover3d.style.zIndex = '10';
+          albumSpread.style.display = 'none';
+          albumSpread.style.clipPath = 'none';
           currentSpread = 0;
           isAnimating = false;
           updateControls();
         },
       });
 
-      tl.to(cover3d, {
+      tl.to(stage, {
+        x: '-25%',
+        duration: 1.1,
+        ease: 'power2.inOut',
+      }, 0)
+      .to(cover3d, {
         rotationY: 0,
         duration: 1.1,
         ease: 'power2.inOut',
       }, 0)
-      .fromTo(coverShade, { opacity: 0.5 }, { opacity: 0, duration: 0.6, ease: 'power1.out' }, 0.5);
+      .fromTo(coverShade, { opacity: 0.45 }, { opacity: 0, duration: 0.55, ease: 'power1.out' }, 0.5);
 
       return;
     }
 
-    // SCENARIO 3: Turning NEXT between open spreads (1 -> 2 or 2 -> 3)
-    if (target > currentSpread && target <= 3) {
+    // SCENARIO 3: Turning NEXT between open spreads (1..5)
+    if (target > currentSpread && target <= 5) {
       cover3d.style.zIndex = '1';
       const curData = SPREADS[currentSpread];
       const targetData = SPREADS[target];
@@ -362,8 +412,8 @@ export function renderBookView(container, { lang }) {
       return;
     }
 
-    // SCENARIO 4: Turning PREV between open spreads (3 -> 2 or 2 -> 1)
-    if (target < currentSpread && currentSpread <= 3 && target >= 1) {
+    // SCENARIO 4: Turning PREV between open spreads (5..1)
+    if (target < currentSpread && currentSpread <= 5 && target >= 1) {
       cover3d.style.zIndex = '1';
       const curData = SPREADS[currentSpread];
       const targetData = SPREADS[target];
@@ -409,49 +459,72 @@ export function renderBookView(container, { lang }) {
       return;
     }
 
-    // SCENARIO 5: Closing to Back Cover (3 -> 4)
-    if (currentSpread === 3 && target === 4) {
+    // SCENARIO 5: Closing to Back Cover (5 -> 6)
+    if (currentSpread === 5 && target === 6) {
       backCover3d.style.display = 'block';
-      backCover3d.style.zIndex = '20';
+      backCover3d.style.zIndex = '25';
       stage.classList.add('closed-back');
+      albumSpread.style.display = 'none';
+      cover3d.style.display = 'none';
 
-      gsap.fromTo(backCover3d, 
-        { rotationY: 90, opacity: 0 },
-        {
-          rotationY: 0,
-          opacity: 1,
-          duration: 0.95,
-          ease: 'power2.inOut',
-          onComplete: () => {
-            currentSpread = 4;
-            isAnimating = false;
-            updateControls();
-          },
-        }
-      );
-      return;
-    }
-
-    // SCENARIO 6: Reopening from Back Cover (4 -> 3)
-    if (currentSpread === 4 && target === 3) {
-      stage.classList.remove('closed-back');
-
-      gsap.to(backCover3d, {
-        rotationY: 90,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power2.inOut',
+      const tl = gsap.timeline({
         onComplete: () => {
-          backCover3d.style.display = 'none';
-          currentSpread = 3;
+          currentSpread = 6;
           isAnimating = false;
           updateControls();
         },
       });
+
+      tl.to(stage, {
+        x: '-25%',
+        duration: 1.0,
+        ease: 'power2.inOut',
+      }, 0)
+      .fromTo(backCover3d, 
+        { rotationY: 90, opacity: 0 },
+        {
+          rotationY: 0,
+          opacity: 1,
+          duration: 1.0,
+          ease: 'power2.inOut',
+        },
+        0
+      );
       return;
     }
 
-    // Fallback direct jump
+    // SCENARIO 6: Reopening from Back Cover (6 -> 5)
+    if (currentSpread === 6 && target === 5) {
+      stage.classList.remove('closed-back');
+      albumSpread.style.display = 'flex';
+      cover3d.style.display = 'block';
+      cover3d.style.zIndex = '1';
+      setBaseSpread(5);
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          backCover3d.style.display = 'none';
+          currentSpread = 5;
+          isAnimating = false;
+          updateControls();
+        },
+      });
+
+      tl.to(stage, {
+        x: '0%',
+        duration: 0.95,
+        ease: 'power2.inOut',
+      }, 0)
+      .to(backCover3d, {
+        rotationY: 90,
+        opacity: 0,
+        duration: 0.95,
+        ease: 'power2.inOut',
+      }, 0);
+      return;
+    }
+
+    // Direct jump fallback
     setBaseSpread(target);
     currentSpread = target;
     isAnimating = false;
@@ -463,13 +536,15 @@ export function renderBookView(container, { lang }) {
   nextBtn.addEventListener('click', () => goToSpread(currentSpread + 1));
 
   // Cover Click to Open
-  cover3d.addEventListener('click', () => {
+  cover3d.addEventListener('click', (e) => {
+    if (e.target.closest('[data-zoom]')) return;
     if (currentSpread === 0) goToSpread(1);
+    else if (currentSpread === 1) goToSpread(0);
   });
 
   // Back Cover Click to Reopen
   backCover3d.addEventListener('click', () => {
-    if (currentSpread === 4) goToSpread(3);
+    if (currentSpread === maxSpreads) goToSpread(maxSpreads - 1);
   });
 
   // Page clicks (left = prev, right = next)

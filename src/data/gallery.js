@@ -40,6 +40,7 @@ export const gallery = [
     "h": 853,
     "sizes": [
       640,
+      853,
       1280
     ]
   },
@@ -50,6 +51,41 @@ export const gallery = [
     "sizes": [
       640,
       853
+    ]
+  },
+  {
+    "id": "07-angkor-garland",
+    "w": 682,
+    "h": 1024,
+    "sizes": [
+      640,
+      682
+    ]
+  },
+  {
+    "id": "08-road-gold",
+    "w": 472,
+    "h": 857,
+    "sizes": [
+      472
+    ]
+  },
+  {
+    "id": "09-palms-standing",
+    "w": 682,
+    "h": 1024,
+    "sizes": [
+      640,
+      682
+    ]
+  },
+  {
+    "id": "10-walk-smile",
+    "w": 682,
+    "h": 1024,
+    "sizes": [
+      640,
+      682
     ]
   }
 ];
