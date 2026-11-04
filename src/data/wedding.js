@@ -19,24 +19,14 @@ export const wedding = {
     mapsUrl: 'https://maps.google.com/?q=11.2333,105.3667',
     coords: '11.2333° N, 105.3667° E'
   },
-  // Wedding Gift & KHQR settings (Easily customizable!)
+  // Wedding Gift & KHQR settings (Universal KHQR: KHR & USD)
   gift: {
-    khr: {
-      bankName: 'ABA Bank',
-      accountName: 'KIM GEOK GOEUH',
-      accountNumber: '089 688 613',
-      qrImage: '/img/qr-aba-khr.webp',
-      currency: 'KHR',
-      symbol: '៛',
-    },
-    usd: {
-      bankName: 'ABA Bank',
-      accountName: 'KIM GEOK GOEUH',
-      accountNumber: '013 465 459',
-      qrImage: '/img/qr-aba-khr.webp',
-      currency: 'USD',
-      symbol: '$',
-    },
+    accountName: 'SREYNEAT DYNA',
+    qrImage: '/img/qr-khqr.webp',
+    qrDownload: '/img/qr-khqr.png',
+    bankType: 'KHQR (Bakong / គ្រប់ធនាគារទាំងអស់)',
+    currencies: 'KHR & USD',
+    bgImage: '05-corridor',
   },
   music: '/audio/wedding-song.mp3',
   photos: { envelopeBg: '01-angkor-blue', cover: '06-walk-wide', coverWide: '05-corridor' },
