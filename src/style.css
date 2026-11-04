@@ -110,7 +110,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .cv-title{font-family:var(--km-head);font-size:clamp(16px,4.6vw,30px);text-align:center;width:100%;margin:0 auto}
 .cv-logo{width:min(62vw,300px,calc(34svh*1.55));margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .cv-logo .lg-crest{display:none} /* Avoid duplicate crest under title */
-.cv-en{font-family:var(--en-script);font-size:clamp(24px,4.2svh,38px);color:#f1deb0;line-height:1.3;text-align:center;width:100%;margin:0 auto}
+.cv-names{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto}
+.cv-km-full{font-family:var(--km-head);font-size:clamp(16px,4vw,24px);color:#fff1bf;line-height:1.4;text-align:center;width:100%;margin:0 auto 2px;letter-spacing:.02em;text-shadow:0 2px 8px rgba(0,0,0,.65)}
+.cv-km-full .cv-dot{font-size:.7em;color:#d9b15a;margin:0 6px;vertical-align:middle}
+.cv-en{font-family:var(--en-script);font-size:clamp(22px,3.8svh,34px);color:#f1deb0;line-height:1.3;text-align:center;width:100%;margin:0 auto}
 
 /* Guest invite banner on cover */
 .cv-guest-card{background:rgba(28,14,8,.78);border:1px solid rgba(233,200,130,.4);border-radius:12px;padding:8px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.35);margin:4px auto;width:100%;max-width:380px;text-align:center}
