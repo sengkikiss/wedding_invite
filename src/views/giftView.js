@@ -181,3 +181,4 @@ export function renderGiftView(container, { lang }) {
     destroy: () => {},
   };
 }
+

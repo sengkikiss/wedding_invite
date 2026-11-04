@@ -111,3 +111,4 @@ export function renderCountdownView(container, { lang }) {
     destroy: () => clearInterval(timerInterval),
   };
 }
+
