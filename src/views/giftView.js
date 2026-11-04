@@ -3,16 +3,44 @@ import { dict } from '../i18n.js';
 
 const B = import.meta.env ? (import.meta.env.BASE_URL || '/') : '/';
 
+function resolveAsset(p) {
+  if (!p || typeof p !== 'string') return `${B}img/qr-khqr.webp`;
+  if (p.startsWith('http://') || p.startsWith('https://') || p.startsWith('data:')) return p;
+  const clean = p.replace(/^\/+/, '');
+  return `${B}${clean}`;
+}
+
 export function renderGiftView(container, { lang }) {
   const t = () => dict[lang];
 
-  const giftData = W.gift || {
-    accountName: 'SREYNEAT DYNA',
-    qrImage: `${B}img/qr-khqr.webp`,
-    qrDownload: `${B}img/qr-khqr.png`,
-    bankType: 'KHQR (Bakong / គ្រប់ធនាគារទាំងអស់)',
-    currencies: 'KHR & USD',
-  };
+  const rawGift = (W && W.gift) ? W.gift : {};
+
+  // Resilient fallback across new flat format, legacy {khr, usd} format, or defaults
+  const accountName = String(
+    rawGift.accountName ||
+    rawGift.name ||
+    rawGift.khr?.accountName ||
+    rawGift.usd?.accountName ||
+    'SREYNEAT DYNA'
+  ).trim();
+
+  const rawQrImage =
+    rawGift.qrImage ||
+    rawGift.qr ||
+    rawGift.khr?.qrImage ||
+    rawGift.usd?.qrImage ||
+    'img/qr-khqr.webp';
+  const qrImage = resolveAsset(rawQrImage);
+
+  const rawQrDownload =
+    rawGift.qrDownload ||
+    rawGift.download ||
+    rawGift.qrImage ||
+    rawGift.khr?.qrImage ||
+    'img/qr-khqr.png';
+  const qrDownload = resolveAsset(rawQrDownload);
+
+  const currencies = rawGift.currencies || 'KHR & USD';
 
   container.innerHTML = `
     <section class="page-section section-gift" id="giftSection">
@@ -42,9 +70,11 @@ export function renderGiftView(container, { lang }) {
             <div class="gift-qr-frame">
               <img
                 id="giftQrImg"
-                src="${giftData.qrImage}"
-                alt="KHQR SREYNEAT DYNA"
-                loading="lazy"
+                src="${qrImage}"
+                alt="KHQR ${accountName}"
+                loading="eager"
+                decoding="async"
+                onerror="if(this.src.indexOf('.webp')!==-1){this.src='${B}img/qr-khqr.png';}else if(this.src.indexOf('.png')!==-1){this.src='${B}img/qr-khqr.webp';}"
               />
             </div>
             <div class="gift-khqr-pill">
@@ -67,7 +97,7 @@ export function renderGiftView(container, { lang }) {
             <!-- Account Name Card -->
             <div class="gift-account-badge">
               <div class="gab-label">${t().gift_account_name_label}</div>
-              <div class="gab-name foil shimmer" id="giftAccountName">${giftData.accountName}</div>
+              <div class="gab-name foil shimmer" id="giftAccountName">${accountName}</div>
               <div class="gab-currency-support">
                 <span class="currency-tag">KHR</span>
                 <span class="currency-tag">USD</span>
@@ -119,8 +149,8 @@ export function renderGiftView(container, { lang }) {
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => {
       const link = document.createElement('a');
-      link.href = giftData.qrDownload || `${B}img/qr-khqr.png`;
-      link.download = `KHQR-${giftData.accountName.replace(/\s+/g, '-')}.png`;
+      link.href = qrDownload;
+      link.download = `KHQR-${(accountName || 'SREYNEAT-DYNA').replace(/\s+/g, '-')}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -130,7 +160,7 @@ export function renderGiftView(container, { lang }) {
   // Copy Account Name
   if (copyBtn) {
     copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText(giftData.accountName).then(() => {
+      navigator.clipboard.writeText(accountName || 'SREYNEAT DYNA').then(() => {
         if (toast) {
           toast.hidden = false;
           toast.classList.add('show');

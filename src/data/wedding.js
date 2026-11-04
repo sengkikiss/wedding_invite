@@ -27,6 +27,14 @@ export const wedding = {
     bankType: 'KHQR (Bakong / គ្រប់ធនាគារទាំងអស់)',
     currencies: 'KHR & USD',
     bgImage: '05-corridor',
+    khr: {
+      accountName: 'SREYNEAT DYNA',
+      qrImage: '/img/qr-khqr.webp',
+    },
+    usd: {
+      accountName: 'SREYNEAT DYNA',
+      qrImage: '/img/qr-khqr.webp',
+    },
   },
   music: '/audio/wedding-song.mp3',
   photos: { envelopeBg: '01-angkor-blue', cover: '06-walk-wide', coverWide: '05-corridor' },
