@@ -352,3 +352,55 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   .book-3d{height:clamp(320px,56svh,460px)}
   .status-options{flex-direction:column}
 }
+
+/* ===== Countdown / Invitation Honour Section ===== */
+.section-countdown{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:900px;margin:0 auto;padding:clamp(30px,5svh,60px) clamp(16px,3.5vw,32px);box-sizing:border-box}
+.countdown-card{width:100%;max-width:680px;background:radial-gradient(circle at 50% 20%,rgba(38,19,10,.88),rgba(20,10,5,.94));border:1px solid rgba(233,200,130,.38);border-radius:20px;padding:clamp(24px,4vw,40px) clamp(18px,3.5vw,36px);box-shadow:0 16px 44px rgba(0,0,0,.65),inset 0 0 40px rgba(0,0,0,.4);backdrop-filter:blur(12px);margin:0 auto;text-align:center;box-sizing:border-box;position:relative}
+.cd-flo-wrap{width:140px;margin:0 auto 16px;display:flex;justify-content:center}
+.cd-flo-svg{width:100%;height:auto}
+.cd-speech{font-family:var(--km-body);font-size:clamp(14px,3.2vw,16px);color:#eed9b5;line-height:2.1;letter-spacing:.02em;margin:0 auto 28px;max-width:540px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.cd-cartouche-wrap{display:flex;justify-content:center;margin:0 auto 26px;width:100%}
+.cd-cartouche{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border-radius:99px;border:1.5px solid rgba(233,200,130,.55);background:rgba(36,18,9,.7);box-shadow:0 4px 16px rgba(0,0,0,.4),inset 0 0 12px rgba(217,177,90,.15)}
+.cd-cartouche-text{font-family:var(--km-head);font-size:clamp(14px,3.4vw,17px);letter-spacing:.04em;font-weight:500}
+.cartouche-corner{position:absolute;width:14px;height:14px;pointer-events:none}
+.cartouche-corner.tl{top:-6px;left:-6px}
+.cartouche-corner.tr{top:-6px;right:-6px}
+.cartouche-corner.bl{bottom:-6px;left:-6px}
+.cartouche-corner.br{bottom:-6px;right:-6px}
+
+/* 4-Block Countdown Timer Grid */
+.cd-timer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2vw,18px);width:100%;max-width:520px;margin:0 auto}
+.cd-box{background:linear-gradient(145deg,#c49952 0%,#a47631 50%,#764e16 100%);border:1px solid rgba(255,235,185,.6);border-radius:14px;padding:clamp(12px,2.5vw,18px) 6px;box-shadow:0 6px 18px rgba(0,0,0,.55),inset 0 1px 1px rgba(255,255,255,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:transform .2s ease}
+.cd-box:hover{transform:translateY(-2px)}
+.cd-num{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Kantumruy Pro",sans-serif;font-size:clamp(22px,5.5vw,34px);font-weight:700;color:#fff;line-height:1.1;text-shadow:0 2px 6px rgba(0,0,0,.45);letter-spacing:.02em}
+.cd-lbl{font-family:var(--km-head);font-size:clamp(12px,2.7vw,14px);color:#ffefcf;margin-top:6px;letter-spacing:.04em;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+
+/* ===== Gift QR Section ===== */
+.section-gift{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%;max-width:900px;margin:0 auto;padding:clamp(30px,5svh,60px) clamp(16px,3.5vw,32px);box-sizing:border-box}
+.gift-card{position:relative;width:100%;max-width:720px;border-radius:22px;overflow:hidden;border:1px solid rgba(233,200,130,.4);box-shadow:0 20px 50px rgba(0,0,0,.75);background:#301016;margin:0 auto}
+.gift-card-bg{position:absolute;inset:0;background-size:cover;background-position:center top;opacity:.22;filter:contrast(1.1);pointer-events:none}
+.gift-card-overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,rgba(70,18,25,.75) 0%,rgba(32,8,12,.94) 80%);pointer-events:none}
+.gift-card-emblem{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:clamp(140px,32vw,220px);color:rgba(233,196,106,.06);font-weight:700;line-height:1;pointer-events:none;user-select:none;font-family:serif}
+.gift-content{position:relative;z-index:2;padding:clamp(16px,3vw,28px) clamp(14px,3vw,26px);display:flex;flex-direction:column;align-items:center}
+.gift-currency-tabs{display:flex;gap:10px;margin-bottom:18px;width:100%;max-width:340px;justify-content:center}
+.gift-tab{flex:1;padding:8px 14px;border-radius:99px;background:rgba(20,5,8,.65);border:1px solid rgba(233,200,130,.35);color:#ecd9b0;font-family:var(--km-head);font-size:clamp(12px,2.8vw,14px);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .25s ease;backdrop-filter:blur(8px)}
+.gift-tab:hover{background:rgba(45,12,18,.85);border-color:#f6e7bf}
+.gift-tab.active{background:linear-gradient(135deg,#caa048 0%,#9c7124 100%);border-color:#ffe699;color:#190a05;font-weight:600;box-shadow:0 4px 16px rgba(202,160,72,.45)}
+.tab-symbol{font-weight:700;font-size:1.1em}
+.gift-qr-wrapper{display:flex;flex-direction:column;align-items:center;width:100%;max-width:360px;margin:0 auto}
+.gift-qr-card{width:clamp(190px,50vw,240px);background:#fff;border-radius:14px;padding:8px;box-shadow:0 12px 32px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.gift-qr-card img{width:100%;height:auto;border-radius:6px;display:block}
+.gift-scan-tag{text-align:center;margin-bottom:12px}
+.gift-scan-prompt{font-family:var(--km-head);font-size:clamp(13px,3vw,15px);color:#f6e7bf;margin-bottom:3px;font-weight:400}
+.gift-khqr-badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:#eed6aa;opacity:.9}
+.phone-svg{width:13px;height:13px}
+.gift-account-box{background:rgba(18,5,8,.72);border:1px solid rgba(233,200,130,.3);border-radius:10px;padding:10px 16px;width:100%;text-align:center;margin-bottom:14px;box-sizing:border-box}
+.gab-bank{font-size:11px;color:#caa048;letter-spacing:.05em;text-transform:uppercase;margin-bottom:2px}
+.gab-num-row{display:flex;align-items:center;justify-content:center;gap:6px;margin:2px 0}
+.gab-num{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,monospace,sans-serif;font-size:clamp(16px,4vw,19px);font-weight:600;color:#fff;letter-spacing:.06em}
+.gab-badge{font-size:9.5px;padding:1px 5px;border-radius:4px;background:rgba(202,160,72,.25);border:1px solid rgba(202,160,72,.5);color:#f6e7bf}
+.gab-owner{font-size:11.5px;color:#dfcba2;font-family:var(--km-head)}
+.gift-actions{display:flex;gap:8px;width:100%;flex-direction:row}
+.gift-btn{flex:1;padding:9px 14px;border-radius:99px;font-family:var(--km-head);font-size:12.5px;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .22s ease;box-sizing:border-box}
+.btn-svg{width:15px;height:15px}
+

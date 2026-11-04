@@ -10,7 +10,7 @@ export const wedding = {
   lunar: { km: 'ត្រូវនឹងថ្ងៃ ៧ កើត ខែមិគសិរ ឆ្នាំមមី អដ្ឋស័ក ព.ស. ២៥៧០', en: '7th waxing day, month of Migasir · Year of the Horse · B.E. 2570' },
   timeText: { km: 'វេលាម៉ោង ៤:០០ ល្ងាច', en: '4:00 pm' },
   venue: {
-    km: { name: 'គេហដ្ឋានខាងស្រី', address: 'ភូមិចង្រ្កោះ ឃុំរមចេក ស្រុកព្រះស្តេច ខេត្តព្រៃវែង' },
+    km: { name: 'គេហដ្ឋានខាងស្រី', address: 'ភូមិចង្រុះ ឃុំរំចេក ស្រុកព្រះស្តេច ខេត្តព្រៃវែង' },
     en: { name: "The Bride's Residence", address: 'Chongros Village, Romchek Commune, Prasdech District, Prey Veng Province' },
   },
   // Google Maps Location: Default placeholder. You can replace the embedUrl & mapsUrl anytime!
@@ -18,6 +18,25 @@ export const wedding = {
     embedUrl: 'https://maps.google.com/maps?q=11.2333,105.3667&t=&z=14&ie=UTF8&iwloc=&output=embed',
     mapsUrl: 'https://maps.google.com/?q=11.2333,105.3667',
     coords: '11.2333° N, 105.3667° E'
+  },
+  // Wedding Gift & KHQR settings (Easily customizable!)
+  gift: {
+    khr: {
+      bankName: 'ABA Bank',
+      accountName: 'KIM GEOK GOEUH',
+      accountNumber: '089 688 613',
+      qrImage: '/img/qr-aba-khr.webp',
+      currency: 'KHR',
+      symbol: '៛',
+    },
+    usd: {
+      bankName: 'ABA Bank',
+      accountName: 'KIM GEOK GOEUH',
+      accountNumber: '013 465 459',
+      qrImage: '/img/qr-aba-khr.webp',
+      currency: 'USD',
+      symbol: '$',
+    },
   },
   music: '/audio/wedding-song.mp3',
   photos: { envelopeBg: '01-angkor-blue', cover: '06-walk-wide', coverWide: '05-corridor' },

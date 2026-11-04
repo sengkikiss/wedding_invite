@@ -21,7 +21,9 @@ import {
   toggleAudio,
   onAudioStateChange,
 } from './audioPlayer.js';
+import { renderCountdownView } from './views/countdownView.js';
 import { renderBookView } from './views/bookView.js';
+import { renderGiftView } from './views/giftView.js';
 import { renderLocationView } from './views/locationView.js';
 
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, CustomEase);
@@ -158,7 +160,9 @@ el('app').innerHTML = `
     </div>
     <nav class="drawer-nav">
       <button class="drawer-link active" data-scroll="cover"><span data-k="menu_home"></span></button>
+      <button class="drawer-link" data-scroll="countdownSection"><span data-k="menu_countdown"></span></button>
       <button class="drawer-link" data-scroll="bookSection"><span data-k="menu_book"></span></button>
+      <button class="drawer-link" data-scroll="giftSection"><span data-k="menu_gift"></span></button>
       <button class="drawer-link" data-scroll="locationSection"><span data-k="menu_location"></span></button>
     </nav>
     <div class="drawer-footer">
@@ -196,13 +200,33 @@ el('app').innerHTML = `
       <p class="cv-lunar" id="cvLunar"></p>
       <p class="cv-venue" id="cvVenue"></p>
 
-      <!-- 2 Jump Cards (Clean, No Emojis: Photo Book & Event Location) -->
+      <!-- 4 Jump Cards: Countdown, Photo Book, Gift QR, Location -->
       <div class="cv-cards" id="cvCards">
+        <button class="cv-card" data-target="countdownSection">
+          <div class="cv-card-inner">
+            <div class="cv-card-text">
+              <strong class="foil" data-k="card_countdown"></strong>
+              <span data-k="card_countdown_desc"></span>
+            </div>
+            <div class="cv-card-arrow">›</div>
+          </div>
+        </button>
+
         <button class="cv-card" data-target="bookSection">
           <div class="cv-card-inner">
             <div class="cv-card-text">
               <strong class="foil" data-k="card_book"></strong>
               <span data-k="card_book_desc"></span>
+            </div>
+            <div class="cv-card-arrow">›</div>
+          </div>
+        </button>
+
+        <button class="cv-card" data-target="giftSection">
+          <div class="cv-card-inner">
+            <div class="cv-card-text">
+              <strong class="foil" data-k="card_gift"></strong>
+              <span data-k="card_gift_desc"></span>
             </div>
             <div class="cv-card-arrow">›</div>
           </div>
@@ -223,10 +247,16 @@ el('app').innerHTML = `
     </div>
   </section>
 
-  <!-- SECTION 2: MEMORY BOOK -->
+  <!-- SECTION 2: INVITATION HONOUR & COUNTDOWN -->
+  <div id="countdownContainer"></div>
+
+  <!-- SECTION 3: MEMORY BOOK -->
   <div id="bookContainer"></div>
 
-  <!-- SECTION 3: LOCATION & GOOGLE MAPS -->
+  <!-- SECTION 4: WEDDING GIFT (KHQR) -->
+  <div id="giftContainer"></div>
+
+  <!-- SECTION 5: LOCATION & GOOGLE MAPS -->
   <div id="locationContainer"></div>
 </main>
 
@@ -234,12 +264,26 @@ el('app').innerHTML = `
 `;
 
 /* ---------- Mount All Sections in Continuous Scroll ---------- */
+let countdownInstance = null;
+let bookInstance = null;
+let giftInstance = null;
+let locationInstance = null;
+
 function mountAllSections() {
+  if (countdownInstance?.destroy) countdownInstance.destroy();
+  if (bookInstance?.destroy) bookInstance.destroy();
+  if (giftInstance?.destroy) giftInstance.destroy();
+  if (locationInstance?.destroy) locationInstance.destroy();
+
+  const countdownContainer = el('countdownContainer');
   const bookContainer = el('bookContainer');
+  const giftContainer = el('giftContainer');
   const locationContainer = el('locationContainer');
 
-  renderBookView(bookContainer, { lang });
-  renderLocationView(locationContainer, { lang });
+  if (countdownContainer) countdownInstance = renderCountdownView(countdownContainer, { lang });
+  if (bookContainer) bookInstance = renderBookView(bookContainer, { lang });
+  if (giftContainer) giftInstance = renderGiftView(giftContainer, { lang });
+  if (locationContainer) locationInstance = renderLocationView(locationContainer, { lang });
 }
 mountAllSections();
 

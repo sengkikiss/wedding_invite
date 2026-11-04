@@ -76,6 +76,32 @@ export const dict = {
     delete_wish: 'លុប',
     delete_confirm: 'តើអ្នកពិតជាចង់លុបទិន្នន័យនេះមែនទេ?',
     
+    // Countdown / Invitation Honour Section
+    countdown_title: 'យើងខ្ញុំមានកិត្តិយសសូមគោរពអញ្ជើញ',
+    countdown_speech: 'ឯកឧត្តម លោកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា\nអញ្ជើញចូលរួមជាអធិបតី និងជាភ្ញៀវកិត្តិយស ដើម្បីប្រសិទ្ធពរជ័យសិរីសួស្តី ជ័យមង្គល ក្នុងពិធីអាពាហ៍ពិពាហ៍ របស់យើងខ្ញុំទាំងពីរ។',
+    countdown_cartouche: 'យើងខ្ញុំកំពុងរង់ចាំថ្ងៃពិសេស',
+    countdown_days: 'ថ្ងៃ',
+    countdown_hours: 'ម៉ោង',
+    countdown_mins: 'នាទី',
+    countdown_secs: 'វិនាទី',
+    menu_countdown: 'សេចក្តីអញ្ជើញ & រាប់ថយក្រោយ',
+    card_countdown: 'សេចក្តីគោរពអញ្ជើញ',
+    card_countdown_desc: 'រាប់ថយក្រោយដល់ថ្ងៃពិសេស',
+
+    // Gift QR Section
+    gift_title: 'ចំណងដៃ',
+    gift_subtitle: 'សូមស្កេនដើម្បីជូនពរជ័យ និងចំណងដៃដល់គូស្វាមីភរិយាថ្មី',
+    gift_khr_tab: 'ប្រាក់រៀល',
+    gift_usd_tab: 'ប្រាក់ដុល្លារ',
+    gift_scan_hint: 'សូមស្កេនដើម្បីជូនចំណងដៃ',
+    gift_khqr_badge: 'ការទូទាត់តាម KHQR',
+    gift_download_btn: 'ទាញយក QR',
+    gift_copy_acc: 'ចម្លងលេខកុង',
+    gift_copied_toast: 'បានចម្លងលេខកុងធនាគារជោគជ័យ!',
+    menu_gift: 'ចំណងដៃ (KHQR)',
+    card_gift: 'ចំណងដៃ QR',
+    card_gift_desc: 'ស្កេន QR ជូនចំណងដៃ',
+
     // Location Section
     loc_title: 'ទីតាំងពិធី',
     loc_subtitle: 'គេហដ្ឋានខាងស្រី · ខេត្តព្រៃវែង',
@@ -87,10 +113,10 @@ export const dict = {
     
     // Navigation Menu
     menu_home: 'ទំព័រដើម',
+    menu_countdown: 'សេចក្តីអញ្ជើញ & រាប់ថយក្រោយ',
     menu_book: 'សៀវភៅអនុស្សាវរីយ៍',
-    menu_guests: 'ភ្ញៀវកិត្តិយស & ជូនពរ',
+    menu_gift: 'ចំណងដៃ (KHQR)',
     menu_location: 'ទីតាំងពិធី (ផែនទី)',
-    menu_admin: 'ផ្ទាំង Admin (គ្រប់គ្រងភ្ញៀវ)',
     close_menu: 'បិទ',
   },
   en: {
@@ -170,6 +196,32 @@ export const dict = {
     delete_wish: 'Delete',
     delete_confirm: 'Are you sure you want to delete this entry?',
     
+    // Countdown / Invitation Honour Section
+    countdown_title: 'Cordially Request the Honour of Your Presence',
+    countdown_speech: 'Excellencies, Neak Oknha, Lok Chumteav, Ladies and Gentlemen,\nWe would be deeply honored by your esteemed presence as our guests of honor to bestow your sacred blessings upon our wedding celebration.',
+    countdown_cartouche: 'Counting Down to Our Special Day',
+    countdown_days: 'Days',
+    countdown_hours: 'Hours',
+    countdown_mins: 'Minutes',
+    countdown_secs: 'Seconds',
+    menu_countdown: 'Invitation & Countdown',
+    card_countdown: 'Wedding Countdown',
+    card_countdown_desc: 'Counting down to our special day',
+
+    // Gift QR Section
+    gift_title: 'Wedding Gift',
+    gift_subtitle: 'Scan to send your blessings & wedding gift',
+    gift_khr_tab: 'Riel (KHR)',
+    gift_usd_tab: 'Dollar (USD)',
+    gift_scan_hint: 'Please scan to send your gift',
+    gift_khqr_badge: 'Payment via KHQR',
+    gift_download_btn: 'Download QR',
+    gift_copy_acc: 'Copy Account No.',
+    gift_copied_toast: 'Bank account number copied!',
+    menu_gift: 'Wedding Gift (KHQR)',
+    card_gift: 'Wedding Gift',
+    card_gift_desc: 'Scan KHQR to send gifts',
+
     // Location Section
     loc_title: 'Event Location',
     loc_subtitle: "The Bride's Residence · Prey Veng",
@@ -181,10 +233,10 @@ export const dict = {
     
     // Navigation Menu
     menu_home: 'Home',
+    menu_countdown: 'Invitation & Countdown',
     menu_book: 'Memory Book',
-    menu_guests: 'Honored Guests & Wishes',
+    menu_gift: 'Wedding Gift (KHQR)',
     menu_location: 'Event Location & Map',
-    menu_admin: 'Admin (Guest Manager)',
     close_menu: 'Close',
   },
 };
