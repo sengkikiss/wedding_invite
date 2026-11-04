@@ -32,9 +32,11 @@ export function renderLocationView(container, { lang }) {
           ${W.timeText[lang]} · ថ្ងៃទី ${W.date.d} ខែ ${W.date.m} ឆ្នាំ ${W.date.y}
         </div>
 
+        ${mapData.isPlaceholder ? `
         <div class="loc-helper-note">
           ${t().map_default_note}
         </div>
+        ` : ''}
 
         <!-- Google Map Embed Container -->
         <div class="map-embed-wrapper">
@@ -62,7 +64,7 @@ export function renderLocationView(container, { lang }) {
             ${t().copy_address}
           </button>
           <a
-            href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(v.address)}"
+            href="https://www.google.com/maps/dir/?api=1&destination=${mapData.lat || 11.1957424},${mapData.lng || 105.3655148}"
             target="_blank"
             rel="noopener noreferrer"
             class="loc-btn outline-btn"

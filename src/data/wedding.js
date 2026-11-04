@@ -13,11 +13,14 @@ export const wedding = {
     km: { name: 'គេហដ្ឋានខាងស្រី', address: 'ភូមិចង្រុះ ឃុំរំចេក ស្រុកព្រះស្តេច ខេត្តព្រៃវែង' },
     en: { name: "The Bride's Residence", address: 'Chongros Village, Romchek Commune, Prasdech District, Prey Veng Province' },
   },
-  // Google Maps Location: Default placeholder. You can replace the embedUrl & mapsUrl anytime!
+  // Google Maps Location: Real Wedding Venue
   map: {
-    embedUrl: 'https://maps.google.com/maps?q=11.2333,105.3667&t=&z=14&ie=UTF8&iwloc=&output=embed',
-    mapsUrl: 'https://maps.google.com/?q=11.2333,105.3667',
-    coords: '11.2333° N, 105.3667° E'
+    embedUrl: 'https://maps.google.com/maps?q=11.1957424,105.3655148&t=&z=15&ie=UTF8&iwloc=&output=embed',
+    mapsUrl: 'https://maps.app.goo.gl/5iSRaRrfbNuYkxTw9',
+    coords: '11.1957° N, 105.3655° E',
+    lat: 11.1957424,
+    lng: 105.3655148,
+    isPlaceholder: false,
   },
   // Wedding Gift & KHQR settings (Universal KHQR: KHR & USD)
   gift: {
