@@ -302,6 +302,7 @@ function applyLang() {
   });
   el('langBtn').textContent = t().lang;
   const kmFull = el('cvKmFull');
+  const enFull = el('cvEn');
   if (kmFull) {
     if (lang === 'km' && (W.groom.km.full || W.bride.km.full)) {
       kmFull.style.display = 'block';
@@ -310,7 +311,14 @@ function applyLang() {
       kmFull.style.display = 'none';
     }
   }
-  el('cvEn').innerHTML = `<span>${W.groom.en.full}</span> <span>&amp; ${W.bride.en.full}</span>`;
+  if (enFull) {
+    if (lang === 'en') {
+      enFull.style.display = 'block';
+      enFull.innerHTML = `<span>${W.groom.en.full}</span> <span>&amp; ${W.bride.en.full}</span>`;
+    } else {
+      enFull.style.display = 'none';
+    }
+  }
 
   // Invited guest name
   const guestName = getCurrentGuestName();
@@ -432,7 +440,7 @@ function startCover() {
     .fromTo('#cvCrest', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 1 }, 0.5)
     .add(reveal('#cvTitle .foil'), 0.7);
   tl.add(animateLogo(el('cvLogo')), 1.1);
-  tl.fromTo(['#cvKmFull', '#cvEn'], { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.15 }, 2.2)
+  tl.fromTo('#cvNames', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 1 }, 2.2)
     .fromTo('#cvGuestCard', { autoAlpha: 0, scale: 0.95 }, { autoAlpha: 1, scale: 1, duration: 0.9 }, 2.4)
     .fromTo('#cvDate > div', { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.12 }, 2.7)
     .fromTo(['#cvLunar', '#cvVenue'], { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.15 }, 3.1)
