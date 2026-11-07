@@ -10,7 +10,7 @@ export const wedding = {
   lunar: { km: 'ត្រូវនឹងថ្ងៃ ៧ កើត ខែមិគសិរ ឆ្នាំមមី អដ្ឋស័ក ព.ស. ២៥៧០', en: '7th waxing day, month of Migasir · Year of the Horse · B.E. 2570' },
   timeText: { km: 'វេលាម៉ោង ៤:០០ ល្ងាច', en: '4:00 pm' },
   venue: {
-    km: { name: 'គេហដ្ឋានខាងស្រី', address: 'ភូមិចង្រុះ ឃុំរំចេក ស្រុកព្រះស្តេច ខេត្តព្រៃវែង' },
+    km: { name: 'គេហដ្ឋានខាងស្រី', address: 'ភូមិជង្រុះ ឃុំរំចេក ស្រុកព្រះស្តេច ខេត្តព្រៃវែង' },
     en: { name: "The Bride's Residence", address: 'Chongros Village, Romchek Commune, Prasdech District, Prey Veng Province' },
   },
   // Google Maps Location: Real Wedding Venue
